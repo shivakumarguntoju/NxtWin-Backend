@@ -10,29 +10,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", unique = true, nullable = false, length = 50)
-    private String username;
 
-    @Column(name = "email", unique = true, nullable = false, length = 100)
+
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @Column(name = "balance", precision = 10, scale = 2)
-    private Double balance = 1000.00;
+    @Column(name = "balance")
+    private Double balance ;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "token")
+    private String token;
 
     // Constructors, getters, and setters
     public User() {
     }
 
-    public User(String username, String email, String passwordHash) {
-        this.username = username;
+    public User( String email, String password) {
+
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     // Getters and setters for all fields
@@ -44,13 +46,7 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getEmail() {
         return email;
@@ -60,12 +56,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Double getBalance() {
@@ -82,5 +78,14 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    // Getter and setter for token
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

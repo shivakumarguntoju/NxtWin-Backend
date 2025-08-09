@@ -19,11 +19,11 @@ public class Event {
     @Column(name = "category", length = 50)
     private String category;
 
-    @Column(name = "yes_price", precision = 4, scale = 2)
-    private Double yesPrice = 5.0;
+    @Column(name = "yes_price")
+    private Double yesPrice ;
 
-    @Column(name = "no_price", precision = 4, scale = 2)
-    private Double noPrice = 5.0;
+    @Column(name = "no_price")
+    private Double noPrice;
 
     @Column(name = "status", length = 20)
     private String status = "ACTIVE";

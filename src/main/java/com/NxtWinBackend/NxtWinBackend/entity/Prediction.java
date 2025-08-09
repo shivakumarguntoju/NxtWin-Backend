@@ -21,13 +21,13 @@ public class Prediction {
     @Column(name = "prediction", nullable = false)
     private Boolean prediction;
 
-    @Column(name = "amount", nullable = false, precision = 10, scale = 2)
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @Column(name = "price_at_time", nullable = false, precision = 4, scale = 2)
+    @Column(name = "price_at_time", nullable = false)
     private Double priceAtTime;
 
-    @Column(name = "potential_return", precision = 10, scale = 2)
+    @Column(name = "potential_return")
     private Double potentialReturn;
 
     @Column(name = "status", length = 20)
