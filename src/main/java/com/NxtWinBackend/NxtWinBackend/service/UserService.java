@@ -2,6 +2,7 @@ package com.NxtWinBackend.NxtWinBackend.service;
 
 
 import com.NxtWinBackend.NxtWinBackend.configuration.JwtTokenUtil;
+import com.NxtWinBackend.NxtWinBackend.entity.LoginResponse;
 import com.NxtWinBackend.NxtWinBackend.entity.Token;
 import com.NxtWinBackend.NxtWinBackend.entity.User;
 import com.NxtWinBackend.NxtWinBackend.repository.TokenRepository;
@@ -39,7 +40,7 @@ public class UserService {
         return savedUser;
     }
 
-    public String loginUser(String email, String password) {
+    public LoginResponse loginUser(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -49,11 +50,20 @@ public class UserService {
 
         String token = jwtTokenUtil.generateToken(user.getEmail());
 
-        // Save the token to the database using the Token entity
+        // Save token in the Token table
         Token userToken = new Token(token, user);
         tokenRepository.save(userToken);
 
-        return token;
+        // Save token in User table as well if needed
+        user.setToken(token);
+        userRepository.save(user);
+
+        return new LoginResponse(
+                user.getId(),
+                user.getEmail(),
+                token,
+                user.getName()
+        );
     }
 
     private void sendRegistrationEmail(String email) {

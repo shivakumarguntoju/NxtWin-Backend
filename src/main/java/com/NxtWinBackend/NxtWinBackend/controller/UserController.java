@@ -1,6 +1,7 @@
 package com.NxtWinBackend.NxtWinBackend.controller;
 
 
+import com.NxtWinBackend.NxtWinBackend.entity.LoginResponse;
 import com.NxtWinBackend.NxtWinBackend.entity.User;
 import com.NxtWinBackend.NxtWinBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user) {
-        String token = userService.loginUser(user.getEmail(), user.getPassword());
-        return ResponseEntity.ok(token);
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody User user) {
+        LoginResponse response = userService.loginUser(user.getEmail(), user.getPassword());
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/logout")

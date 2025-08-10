@@ -29,12 +29,15 @@ public class User {
     @Column(name = "token")
     private String token;
 
+    @Column(name = "name")
+    private String name;
+
     // Constructors, getters, and setters
     public User() {
     }
 
-    public User( String email, String password) {
-
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
     }
@@ -90,4 +93,7 @@ public class User {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 }
